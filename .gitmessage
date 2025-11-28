@@ -1,0 +1,13 @@
+# Conventional Commit Message Template
+
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+
+# Example:
+# feat(logger): add verbose log level support
+# fix(adapter): handle edge runtime detection
+# docs: update README with usage examples
+# chore: update dependencies
