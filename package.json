@@ -24,8 +24,12 @@
     "nodejs"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@types/node": "^22.15.3",
     "@vitest/ui": "^4.0.14",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "typescript": "^5.3.3",
     "vitest": "^4.0.14"
   },
@@ -39,5 +43,16 @@
     "url": "https://github.com/kzhxxn/isomorphic-logger/issues"
   },
   "homepage": "https://github.com/kzhxxn/isomorphic-logger#readme",
-  "packageManager": "pnpm@10.12.1"
+  "packageManager": "pnpm@10.12.1",
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "vitest run --passWithNoTests"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
 }
