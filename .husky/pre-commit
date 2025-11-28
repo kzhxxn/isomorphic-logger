@@ -1,0 +1,19 @@
+#!/bin/sh
+
+BOLD="\033[1m"
+GREEN="\033[32m"
+RED="\033[31m"
+YELLOW="\033[33m"
+RESET="\033[0m"
+
+echo "${BOLD}🚀 Step 1/1${RESET} Lint & Format Check"
+echo "🔍 Running lint-staged for staged files..."
+
+if ! pnpm lint-staged; then
+  echo ""
+  echo "${RED}❌ Lint check failed!${RESET}"
+  echo "${YELLOW}💡 Tip:${RESET} You can run 'pnpm lint' manually to debug."
+  exit 1
+fi
+
+echo "${GREEN}✅ Lint check passed!${RESET}"

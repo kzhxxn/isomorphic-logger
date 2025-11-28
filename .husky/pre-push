@@ -1,0 +1,40 @@
+#!/bin/sh
+
+BOLD="\033[1m"
+GREEN="\033[32m"
+RED="\033[31m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+GRAY="\033[90m"
+RESET="\033[0m"
+
+divider(){ echo "${GRAY}────────────────────────────────────────────${RESET}"; }
+stage(){ echo ""; divider; echo "${BOLD}${BLUE}🚀 Step $1${RESET} ${BOLD}${2}${RESET}"; divider; echo ""; }
+
+# Step 1: Type Checking
+stage "1/3" "Type Checking"
+echo "📝 Running typecheck..."
+pnpm run typecheck || {
+  echo ""; echo "${RED}❌ Type errors found!${RESET}";
+  echo "${YELLOW}💡 Tip:${RESET} Run 'pnpm run typecheck' to debug locally."; exit 1; }
+echo "${GREEN}✅ Typecheck passed!${RESET}"
+
+# Step 2: Run Tests
+stage "2/3" "Run Tests"
+echo "🧪 Running tests..."
+pnpm run test || {
+  echo ""; echo "${RED}❌ Test failures!${RESET}";
+  echo "${YELLOW}💡 Tip:${RESET} Run 'pnpm run test' to debug locally."; exit 1; }
+echo "${GREEN}✅ All tests passed!${RESET}"
+
+# Step 3: Build Validation
+stage "3/3" "Build Validation"
+echo "🏗️  Validating build..."
+pnpm run build || {
+  echo ""; echo "${RED}❌ Build failed!${RESET}";
+  echo "${YELLOW}💡 Tip:${RESET} Run 'pnpm run build' to debug locally."; exit 1; }
+echo "${GREEN}✅ Build successful!${RESET}"
+
+stage "✅ Done" "Pre-push Checks Passed"
+echo "${GREEN}🎉 All checks passed!${RESET}"
+echo "${GRAY}(Ready to push with confidence 🚀)${RESET}"

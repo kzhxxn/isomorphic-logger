@@ -109,7 +109,6 @@ async function dispatchAsync(level: LogLevel, msg: string, ctx?: LogContext) {
       // Isolate adapter exceptions
       // Optionally log adapter errors for debugging
       if (process?.env?.NODE_ENV === "development") {
-        // eslint-disable-next-line no-console
         console.warn("Logger adapter error:", err);
       }
     }
