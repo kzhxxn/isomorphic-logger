@@ -1,0 +1,30 @@
+{
+  "name": "isomorphic-logger",
+  "version": "1.0.0",
+  "description": "Isomorphic logger for browser and Node.js environments.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "src/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logger",
+    "isomorphic",
+    "browser",
+    "nodejs"
+  ],
+  "author": "kzhxxn",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kzhxxn/isomorphic-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kzhxxn/isomorphic-logger/issues"
+  },
+  "homepage": "https://github.com/kzhxxn/isomorphic-logger#readme",
+  "packageManager": "pnpm@10.12.1"
+}
