@@ -1,14 +1,21 @@
 {
   "name": "isomorphic-logger",
   "version": "1.0.0",
-  "description": "Isomorphic logger for browser and Node.js environments.",
-  "main": "index.js",
+  "description": "Lightweight isomorphic logger for Next.js and various runtimes (browser, Node.js, serverless). Provides a consistent logging interface for both client and server, with automatic environment detection.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "index.js",
-    "src/"
+    "dist/"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "keywords": [
     "logger",
@@ -16,6 +23,10 @@
     "browser",
     "nodejs"
   ],
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.3.3"
+  },
   "author": "kzhxxn",
   "license": "ISC",
   "repository": {
