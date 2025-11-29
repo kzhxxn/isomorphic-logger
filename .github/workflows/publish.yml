@@ -3,7 +3,7 @@ name: Publish to npm & Release
 on:
   push:
     tags:
-      - "v*.*.*"
+      - 'v*.*.*'
 
 jobs:
   publish:
@@ -11,27 +11,34 @@ jobs:
     environment: PRODUCTION
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10.12.1
-          run_install: false
       - uses: actions/setup-node@v4
         with:
-          node-version: "24"
-          registry-url: "https://registry.npmjs.org"
-          cache: pnpm
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+      - run: corepack enable
+      - run: corepack prepare pnpm@10.12.1 --activate
       - run: pnpm install
       - run: pnpm run lint
       - run: pnpm run typecheck
       - run: pnpm run test
       - run: pnpm run build
+<<<<<<< HEAD
       - run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+=======
+      - run: pnpm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+>>>>>>> 12ee257 (chore(ci): add publish workflow for npm & GitHub Release)
       - name: Notify on Publish
         run: echo "Published to npm successfully!"
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
+<<<<<<< HEAD
           token: ${{ secrets.GH_TOKEN }}
+=======
+>>>>>>> 12ee257 (chore(ci): add publish workflow for npm & GitHub Release)
