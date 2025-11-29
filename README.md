@@ -1,10 +1,10 @@
-# isomorphic-logger
+# isomorphic-logger-ts
 
 경량, 환경 감지 기반의 일관된 로깅 라이브러리 (TypeScript)
 
 ## 소개
 
-`isomorphic-logger`는 Next.js, 브라우저, Node.js, 서버리스 등 다양한 런타임에서 일관된 API로 로그를 남길 수 있는 경량 로거입니다. 환경 자동 감지, 로그 레벨 관리, 어댑터 패턴, 타입 안전성, 테스트/품질 관리가 주요 특징입니다.
+`isomorphic-logger-ts`는 Next.js, 브라우저, Node.js, 서버리스 등 다양한 런타임에서 일관된 API로 로그를 남길 수 있는 경량 로거입니다. 환경 자동 감지, 로그 레벨 관리, 어댑터 패턴, 타입 안전성, 테스트/품질 관리가 주요 특징입니다.
 
 ## 내부 구조 및 주요 구현 특징
 
@@ -19,9 +19,9 @@
 ## 설치
 
 ```sh
-pnpm add isomorphic-logger
+pnpm add isomorphic-logger-ts
 # 또는
-npm install isomorphic-logger
+npm install isomorphic-logger-ts
 ```
 
 ## 기본 사용법
@@ -31,7 +31,7 @@ npm install isomorphic-logger
 애플리케이션 진입점에서 `initLogger`를 호출하여 어댑터를 등록해야 합니다.
 
 ```ts
-import { initLogger, ConsoleAdapter } from 'isomorphic-logger';
+import { initLogger, ConsoleAdapter } from 'isomorphic-logger-ts';
 
 // 앱 시작 시 한 번만 호출
 initLogger([new ConsoleAdapter()]);
@@ -40,7 +40,7 @@ initLogger([new ConsoleAdapter()]);
 ### 2. 로그 기록
 
 ```ts
-import { Logger } from 'isomorphic-logger';
+import { Logger } from 'isomorphic-logger-ts';
 
 Logger.info('정보 로그');
 Logger.warn('경고 로그');
@@ -54,7 +54,7 @@ Logger.verbose('상세 로그');
 ### App Router (app/layout.tsx)
 
 ```ts
-import { initLogger, ConsoleAdapter } from 'isomorphic-logger';
+import { initLogger, ConsoleAdapter } from 'isomorphic-logger-ts';
 
 // 서버 컴포넌트에서 초기화
 initLogger([new ConsoleAdapter()], 'server');
@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
 ### Pages Router (pages/\_app.tsx)
 
 ```ts
-import { initLogger, ConsoleAdapter, Logger } from 'isomorphic-logger';
+import { initLogger, ConsoleAdapter, Logger } from 'isomorphic-logger-ts';
 import { useEffect } from 'react';
 
 // 클라이언트 측 초기화
@@ -92,7 +92,7 @@ export default function App({ Component, pageProps }) {
 
 ```ts
 'use client';
-import { Logger } from 'isomorphic-logger';
+import { Logger } from 'isomorphic-logger-ts';
 
 export default function MyComponent() {
   const handleClick = () => {
@@ -106,7 +106,7 @@ export default function MyComponent() {
 ## Node.js 예제
 
 ```ts
-import { initLogger, ConsoleAdapter, Logger } from 'isomorphic-logger';
+import { initLogger, ConsoleAdapter, Logger } from 'isomorphic-logger-ts';
 
 // 서버 시작 시 초기화
 initLogger([new ConsoleAdapter()], 'server');
@@ -122,7 +122,7 @@ import {
   LoggerAdapter,
   Logger,
   LogContext,
-} from 'isomorphic-logger';
+} from 'isomorphic-logger-ts';
 
 // 커스텀 어댑터 구현
 class MyCustomAdapter implements LoggerAdapter {
@@ -149,7 +149,7 @@ Logger.info('여러 어댑터로 동시에 기록됩니다');
 모든 로그에 자동으로 추가될 컨텍스트를 설정할 수 있습니다.
 
 ```ts
-import { setContextProvider } from 'isomorphic-logger';
+import { setContextProvider } from 'isomorphic-logger-ts';
 
 // 동기 컨텍스트
 setContextProvider(() => ({
@@ -169,7 +169,7 @@ setContextProvider(async () => ({
 초기화 후에도 어댑터를 추가할 수 있습니다.
 
 ```ts
-import { addAdapters } from 'isomorphic-logger';
+import { addAdapters } from 'isomorphic-logger-ts';
 
 // 런타임에 어댑터 추가
 addAdapters(new MyNewAdapter());
@@ -292,5 +292,5 @@ PR 및 이슈 환영합니다!
 
 ## 링크
 
-- [GitHub](https://github.com/kzhxxn/isomorphic-logger)
-- [npm](https://www.npmjs.com/package/isomorphic-logger)
+- [GitHub](https://github.com/kzhxxn/isomorphic-logger-ts)
+- [npm](https://www.npmjs.com/package/isomorphic-logger-ts)
