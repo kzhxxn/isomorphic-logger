@@ -19,6 +19,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
   },
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "keywords": [
     "logger",
     "isomorphic",
