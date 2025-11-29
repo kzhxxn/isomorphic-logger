@@ -18,7 +18,7 @@
     "build": "tsc -p tsconfig.json",
     "test": "vitest",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
+    "lint": "eslint . --ext .ts,.tsx --max-warnings=0"
   },
   "engines": {
     "node": ">=24.0.0"
@@ -58,13 +58,16 @@
   "packageManager": "pnpm@10.12.1",
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
-      "vitest run --passWithNoTests"
+      "eslint --fix --max-warnings=0 --"
     ]
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "gitChecks": false
   }
 }

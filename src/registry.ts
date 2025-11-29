@@ -1,9 +1,9 @@
-import { LogLevel } from "./levels";
-import { LogContext, LoggerAdapter, Runtime } from "./types";
+import { LogLevel } from './levels';
+import { LogContext, LoggerAdapter, Runtime } from './types';
 
 type Entry = { level: LogLevel; msg: string; ctx?: LogContext };
 
-const KEY = "__repo_logger_registry__";
+const KEY = '__repo_logger_registry__';
 // Typed global accessor for the logger registry without using `any`
 interface GlobalWithRegistry {
   __repo_logger_registry__?: Registry;
@@ -36,7 +36,7 @@ export function setContextProvider(fn: ContextProvider) {
 }
 
 function methodOf(level: LogLevel) {
-  return (["verbose", "debug", "info", "warn", "error"] as const)[level];
+  return (['verbose', 'debug', 'info', 'warn', 'error'] as const)[level];
 }
 
 export function initLogger(adapters: LoggerAdapter[], runtime?: Runtime) {
@@ -61,13 +61,13 @@ export function setRuntime(runtime: Runtime) {
 }
 
 function currentRuntime(): Runtime {
-  const isBrowser = typeof window !== "undefined";
+  const isBrowser = typeof window !== 'undefined';
   const isEdge =
     typeof (globalThis as { EdgeRuntime?: unknown }).EdgeRuntime !==
-    "undefined";
-  if (isBrowser) return "client";
-  if (isEdge) return "edge";
-  return "server";
+    'undefined';
+  if (isBrowser) return 'client';
+  if (isEdge) return 'edge';
+  return 'server';
 }
 
 // Safely resolve provider result
@@ -76,7 +76,7 @@ async function resolveProvided(): Promise<Partial<LogContext>> {
     const v = registry.contextProvider?.();
     if (
       v &&
-      typeof (v as unknown as Promise<Partial<LogContext>>).then === "function"
+      typeof (v as unknown as Promise<Partial<LogContext>>).then === 'function'
     ) {
       // v is a Promise returning Partial<LogContext>
       return await (v as Promise<Partial<LogContext>>);
@@ -108,8 +108,8 @@ async function dispatchAsync(level: LogLevel, msg: string, ctx?: LogContext) {
     } catch (err) {
       // Isolate adapter exceptions
       // Optionally log adapter errors for debugging
-      if (process?.env?.NODE_ENV === "development") {
-        console.warn("Logger adapter error:", err);
+      if (process?.env?.NODE_ENV === 'development') {
+        console.warn('Logger adapter errors:', err);
       }
     }
   }
