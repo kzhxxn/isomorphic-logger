@@ -1,6 +1,6 @@
 {
   "name": "isomorphic-logger-ts",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "Lightweight isomorphic logger for Next.js and various runtimes (browser, Node.js, serverless). Provides a consistent logging interface for both client and server, with automatic environment detection.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
