@@ -11,13 +11,15 @@ jobs:
     environment: PRODUCTION
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.1
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
-          cache: 'pnpm'
-      - run: corepack enable
-      - run: corepack prepare pnpm@10.12.1 --activate
+          cache: pnpm
       - run: pnpm install
       - run: pnpm run lint
       - run: pnpm run typecheck
