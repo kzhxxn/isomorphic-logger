@@ -25,8 +25,7 @@ jobs:
       - run: pnpm run typecheck
       - run: pnpm run test
       - run: pnpm run build
-<<<<<<< HEAD
-      - run: pnpm publish --access public --no-git-checks
+      - run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 =======
