@@ -20,25 +20,19 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
           cache: pnpm
-      - run: pnpm install
+      - run: pnpm install --no-git-checks
       - run: pnpm run lint
       - run: pnpm run typecheck
       - run: pnpm run test
       - run: pnpm run build
-      - run: pnpm publish --access public
+      - run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-=======
-      - run: pnpm publish --access public
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Notify on Publish
         run: echo "Published to npm successfully!"
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-<<<<<<< HEAD
-          token: ${{ secrets.GH_TOKEN }}
-=======
->>>>>>> 12ee257 (chore(ci): add publish workflow for npm & GitHub Release)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
